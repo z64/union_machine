@@ -5,9 +5,35 @@ services:
   dev:
     build: ./dev/
     volumes:
-      - /P_DRIVE/docker/services:/data
+      - ./data:/data
       - /U_DRIVE:/union
     ports:
       - 7777:7777
     tty: true
     stdin_open: true
+
+  # Portainer for managing Docker
+  portainer:
+    image: portainer/portainer
+    restart: always
+    ports:
+      - 9000:9000
+    volumes:
+      - ./data/portainer:/data
+
+  # Database containers
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./data/postgres:/var/lib/postgresql
+  adminer:
+    image: adminer
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080
