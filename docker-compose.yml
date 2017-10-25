@@ -2,8 +2,6 @@ version: '3'
 
 services:
   # Container for programming & development.
-  # The host VM should mount P:\ and U:\ to P_DRIVE and
-  # U_DRIVE respectively.
   dev:
     build: ./dev/
     volumes:
