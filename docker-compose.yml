@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  # Container for programming & development.
+  # The host VM should mount P:\ and U:\ to P_DRIVE and
+  # U_DRIVE respectively.
+  dev:
+    build: ./dev/
+    volumes:
+      - /P_DRIVE/docker/services:/data
+      - /U_DRIVE:/union
+    ports:
+      - 7777:7777
+    tty: true
+    stdin_open: true
