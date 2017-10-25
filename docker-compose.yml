@@ -5,8 +5,9 @@ services:
   dev:
     build: ./dev/
     volumes:
-      - ./data:/data
+      - /P_DRIVE/docker/services/data:/data
       - /U_DRIVE:/union
+      - /var/opt/svn:/var/opt/svn
     ports:
       - 7777:7777
     tty: true
@@ -19,8 +20,17 @@ services:
     ports:
       - 9000:9000
     volumes:
-      - ./data/portainer:/data
+      - /var/opt/portainer:/data
       - /var/run/docker.sock:/var/run/docker.sock
+
+  # SVN
+  svn:
+    image: gcscaglia/docker-svnserve
+    restart: always
+    ports:
+      - 3690:3690
+    volumes:
+      - /var/opt/svn:/var/opt/svn
 
   # Database containers
   postgres:
@@ -30,7 +40,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
-      - ./data/postgres:/var/lib/postgresql
+      - /var/opt/postgres:/var/lib/postgresql
   adminer:
     image: adminer
     restart: always
