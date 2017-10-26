@@ -30,7 +30,7 @@ services:
     ports:
       - 3690:3690
     volumes:
-      - /var/opt/svn:/var/opt/svn
+      - /U_DRIVE/Common/Database/svn/vault:/var/opt/svn
 
   # Database containers
   postgres:
