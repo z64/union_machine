@@ -25,7 +25,7 @@ services:
 
   # SVN
   svn:
-    image: gcscaglia/docker-svnserve
+    build: ./svn/
     restart: always
     ports:
       - 3690:3690
