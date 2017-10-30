@@ -1,7 +1,7 @@
 FROM base/archlinux
 
-RUN pacman -Syu
-RUN pacman -S --noconfirm \
+RUN pacman -Syu --noconfirm && \
+    pacman -S --noconfirm \
            base-devel \
            crystal \
            shards \
